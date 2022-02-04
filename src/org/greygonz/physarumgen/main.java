@@ -14,7 +14,7 @@ public class main {
         float population = 0.1f;
         float decay_mult = 0.1f;
         float decay_sub = 0.5f;
-        int diff_size = 3;
+        long diff_size = Integer.toUnsignedLong(3);
 
         /* Load OpenCV */
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);

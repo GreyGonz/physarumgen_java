@@ -117,11 +117,11 @@ public class World {
 
     public void deposit_trail(UIVec2 position, short value) {
 
-        short trail_value = (short)m_trail_grid.get(position.getY(), position.getX())[0];
+        long trail_value = Long.parseUnsignedLong(String.valueOf((int)m_trail_grid.get(position.getY(), position.getX())[0]));
 
         if (check_inbounds(position) && (trail_value <= (65535 - value))) {
 
-            short tvalue = (short) (trail_value + value);
+            long tvalue = Long.parseUnsignedLong (String.valueOf((int)(trail_value + value)));
             m_trail_grid.put(position.getY(), position.getX(), tvalue);
 
         }
@@ -132,10 +132,10 @@ public class World {
         return to_grid(from) == to_grid(to);
     }
 
-    public void set_diffusion(int diff_size) {
+    public void set_diffusion(long diff_size) {
 
-        m_diff_kernel = Mat.ones(diff_size, diff_size, CvType.CV_32F);
-        Core.divide(m_diff_kernel, new Scalar((float)(diff_size * diff_size)),  m_diff_kernel);
+        m_diff_kernel = Mat.ones((int)diff_size, (int)diff_size, CvType.CV_32F);
+        Core.divide((double)(diff_size * diff_size), m_diff_kernel, m_diff_kernel);
 
         m_do_diffusion = true;
 
@@ -163,7 +163,7 @@ public class World {
 
             /* m_trail_grid = (1.0f-m_decay_mult) * m_trail_grid - m_decay_mult; */
             Mat tmp_mat = new Mat();
-            Core.multiply(m_trail_grid, new Scalar((1.0f-m_decay_mult)), tmp_mat);
+            Core.multiply(m_trail_grid, new Scalar(1.0f-m_decay_mult), tmp_mat);
             Core.subtract(tmp_mat, new Scalar(m_decay_sub), m_trail_grid);
 
         }
@@ -176,6 +176,7 @@ public class World {
         Core.normalize(m_trail_grid, normalized, 0, 65535, Core.NORM_MINMAX, CvType.CV_16UC1);
 
         normalized.convertTo(normalized, CvType.CV_8UC1, 0.0f, 255.0f);
+        //Core.divide(normalized, new Scalar(256), normalized);
 
         imshow("world", m_world_grid);
         imshow("trail", normalized);

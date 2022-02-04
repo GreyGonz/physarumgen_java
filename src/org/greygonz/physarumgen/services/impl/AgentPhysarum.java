@@ -76,7 +76,7 @@ public class AgentPhysarum implements Agent {
             position.setY(destination.getY());
             m_world.deposit_trail(position, deposition_value);
         } else {
-            float randomAngle = (float)Math.toRadians(Math.random() * 360); // TODO global function
+            float randomAngle = (float)Math.random() * 360; // TODO global function
             alpha = randomAngle;
         }
 

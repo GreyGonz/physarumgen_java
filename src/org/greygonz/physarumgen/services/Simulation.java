@@ -4,7 +4,7 @@ public interface Simulation {
 
     public void spawn_world(int width, int height);
 
-    public void set_world_diffusion(int diff_size);
+    public void set_world_diffusion(long diff_size);
 
     public void set_world_decay(float decay_mult, float decay_sub);
 

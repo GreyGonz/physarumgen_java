@@ -39,7 +39,7 @@ public class SimulationImpl  implements Simulation {
     }
 
     @Override
-    public void set_world_diffusion(int diff_size) {
+    public void set_world_diffusion(long diff_size) {
         m_world.set_diffusion(diff_size);
     }
 
@@ -74,7 +74,7 @@ public class SimulationImpl  implements Simulation {
             if(m_world.place_agent(tmp_pos)) {
 
                 Long id = (long)i;
-                float randomAngle = (float)Math.toRadians(Math.random() * 360); // TODO global function
+                float randomAngle = (float)Math.random() * 360; // TODO global function
                 FVec2 tmp_vec = new FVec2((float)tmp_pos.getX(), (float)tmp_pos.getY());
                 AgentPhysarum agentPhysarum = new AgentPhysarum(id, tmp_vec, randomAngle, m_world);
 
@@ -116,7 +116,7 @@ public class SimulationImpl  implements Simulation {
             if (m_world.place_agent(tmp_pos)) {
 
                 Long id = (long)i;
-                float randomAngle = (float) Math.toRadians(Math.random() * 360); // TODO global function
+                float randomAngle = (float)Math.random() * 360; // TODO global function
                 FVec2 tmp_vec = new FVec2((float) tmp_pos.getX(), (float) tmp_pos.getY());
                 AgentPhysarum agentPhysarum = new AgentPhysarum(id, tmp_vec, randomAngle, m_world);
 
